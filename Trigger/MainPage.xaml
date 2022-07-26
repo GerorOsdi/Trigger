@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Trigger"
+             x:Class="Trigger.MainPage">
+
+    <StackLayout>
+        <Entry Placeholder="Introduce tu nombre" >
+            <Entry.Triggers>
+                <Trigger TargetType="Entry" Property="Text" Value="">
+                    <Setter Property="BackgroundColor" Value="Red" />
+                    <Setter Property="PlaceholderColor" Value="White" />
+                </Trigger>
+            </Entry.Triggers>
+        </Entry>
+
+        <Entry Placeholder="Introduce tu apellido" Text="{Binding Surname}">
+            <Entry.Triggers>
+                <DataTrigger TargetType="Entry" Binding="{Binding Name}" Value="">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+            </Entry.Triggers>
+        </Entry>
+
+
+        <Button Text="Save" BackgroundColor="DarkCyan" TextColor="White">
+            <Button.Triggers>
+                <EventTrigger Event="Clicked">
+                    <local:ExpandButtonTriggerAction />
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
+    </StackLayout>
+
+</ContentPage>
